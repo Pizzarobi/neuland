@@ -249,7 +249,7 @@ export default function Home () {
 
   return (
     <AppContainer>
-      <AppNavbar title="neuland.app" showBack={false}>
+      <AppNavbar title="neuland (Robert flavor)" showBack={false}>
         <AppNavbar.Button onClick={() => setShowThemeModal(true)}>
           <FontAwesomeIcon title="Personalisieren" icon={faPen} fixedWidth />
         </AppNavbar.Button>
@@ -259,8 +259,8 @@ export default function Home () {
               API Spielwiese
             </AppNavbar.Overflow.Link>
           )}
-          <AppNavbar.Overflow.Link variant="link" href="/imprint">
-            Impressum & Datenschutz
+          <AppNavbar.Overflow.Link variant="link" href="/roberto">
+            Roberto
           </AppNavbar.Overflow.Link>
           <AppNavbar.Overflow.Link variant="link" onClick={() => forgetSession(router)}>
             Ausloggen
