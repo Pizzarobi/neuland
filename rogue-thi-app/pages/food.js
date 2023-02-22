@@ -89,9 +89,19 @@ export default function Mensa () {
   function formatPrice (x) {
     return x?.toLocaleString(CURRENCY_LOCALE, { style: 'currency', currency: 'EUR' })
   }
+
+  function formatGram (x) {
+    // use formatFloat and if g. But if value is '' just return it wihtout adding g
+    return x ? `${formatFloat(x)} g` : x
+  }
+
   function getUserSpecificPrice (meal) {
     const price = isStudent ? meal.prices.student : meal.prices.employee
     return formatPrice(price)
+  }
+
+  function formatFloat (x) {
+    return x?.toString().replace('.', ',')
   }
 
   return (
@@ -216,6 +226,44 @@ export default function Mensa () {
               ))}
             </ul>
 
+            <h5>Nährwerte</h5>
+
+            {(showMealDetails?.nutrition && (
+
+              <ul>
+                <li>
+                  <strong>Energie</strong>:{' '}
+
+                  {showMealDetails?.nutrition.kj ? showMealDetails?.nutrition.kj + ' kJ' : ''} / &nbsp;
+                  {showMealDetails?.nutrition.kcal ? showMealDetails?.nutrition.kcal + ' kcal' : ''}
+
+                </li>
+                <li>
+                  <strong>Fett</strong>:{' '}
+                  {formatGram(showMealDetails?.nutrition.fat)}
+                  <br /><strong>davon gesättigte Fettsäuren</strong>: {formatGram(showMealDetails?.nutrition.fatSaturated)}
+                </li>
+                <li>
+                  <strong>Kohlenhydrate</strong>:{' '}
+                  {formatGram(showMealDetails?.nutrition.carbs)}
+                  <br /><strong>davon Zucker</strong>: {formatGram(showMealDetails?.nutrition.sugar)}
+                </li>
+                <li>
+                  <strong>Ballaststoffe</strong>:{' '}
+                  {formatGram(showMealDetails?.nutrition.fiber)}
+                </li>
+                <li>
+                  <strong>Eiweiß</strong>:{' '}
+                  {formatGram(showMealDetails?.nutrition.protein)}
+                </li>
+                <li>
+                  <strong>Salz</strong>:{' '}
+                  {formatGram(showMealDetails?.nutrition.salt)}
+                </li>
+              </ul>)) || (
+                <p>Unbekannt.</p>
+            )}
+
             <h5>Preise</h5>
             <ul>
               <li>
@@ -234,7 +282,9 @@ export default function Mensa () {
 
             <p>
               <strong>Angaben ohne Gewähr. </strong>
+              <br />
               Bitte prüfe die Angaben auf den Infobildschirmen, bevor du etwas konsumiert.
+              Die Nährwerte beziehen sich auf eine durchschnittliche Portion.
             </p>
           </Modal.Body>
 

@@ -40,7 +40,7 @@ export default function Imprint ({ neulandImprint: unsanitizedNeulandImprint }) 
             <span onClick={debugUnlockClicked}>:)</span>
           </h1>
           <ListGroup.Item>
-            Selfhosted von Robert Kalmar z
+            Selfhosted von Robert Kalmar
             <br/>
             E-Mail:{' '}
             <a href="mailto:kontakt@robert-k.net">

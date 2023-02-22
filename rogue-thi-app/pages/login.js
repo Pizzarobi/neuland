@@ -30,6 +30,7 @@ export default function Login () {
   async function attemptLogin (e) {
     try {
       e.preventDefault()
+      // console.log("attempting login")
       await createSession(username, password, saveCredentials)
       router.replace('/' + (redirect || ''))
     } catch (e) {
@@ -43,7 +44,7 @@ export default function Login () {
 
   return (
     <AppContainer>
-      <AppNavbar title="neuland.app" showBack={false} />
+      <AppNavbar title="freiland" showBack={false} />
 
       <AppBody>
         <div className={styles.container}>
@@ -98,9 +99,7 @@ export default function Login () {
           <div className={styles.disclaimer}>
             <h6>Was ist das?</h6>
             <p>
-              Das ist eine inoffizielle Alternative zur THI-App, welche eine verbesserte Benutzererfahrung bieten soll.
-              Sie wird bei von Studierenden bei <a href="https://neuland-ingolstadt.de" target="_blank" rel="noreferrer">Neuland Ingolstadt e.V.</a> für Studierende entwickelt und ist kein Angebot der Technischen Hochschule Ingolstadt.
-            </p>
+              Das ist eine inoffizielle Alternative zur THI-App, welche eine verbesserte Benutzererfahrung bieten soll. </p>
             <h6>Sind meine Daten sicher?</h6>
             <p>
               <strong>Ja. </strong>

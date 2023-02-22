@@ -43,6 +43,10 @@ export default class CredentialStorage {
   }
 
   async write (id, data) {
+    // console.log("write", id, data)
+
+    // 1. Generate a key
+    // console.log('Generate key')
     const key = await crypto.subtle.generateKey(
       {
         name: 'AES-CBC',
@@ -51,8 +55,10 @@ export default class CredentialStorage {
       false,
       ['encrypt', 'decrypt']
     )
+    // 2. Generate an initialization vector
+    // console.log("Generate iv")
     const iv = crypto.getRandomValues(new Uint8Array(16))
-
+    // 3. Encrypt the data
     const encrypted = await crypto.subtle.encrypt(
       {
         name: 'AES-CBC',
@@ -61,12 +67,15 @@ export default class CredentialStorage {
       key,
       objectToArrayBuffer(data)
     )
-
+    // 4. Write the encrypted data to the database
+    // console.log("Write to db")
     const db = await this._openDatabase()
     try {
+      // console.log('Try storing id')
       await db.put(STORE_NAME, { id, key, iv, encrypted })
     } finally {
       db.close()
+      // console.log('Closed db')
     }
   }
 

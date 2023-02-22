@@ -90,8 +90,9 @@ const ALL_DASHBOARD_CARDS = [
       <BaseCard
         key="rooms"
         icon={faDoorOpen}
-        title="Räume"
-        link="/rooms"
+        title="Räume (temporär nicht verfügbar)"
+        link = "/404"
+        // link="/rooms"
         />
     )
   },
@@ -249,7 +250,7 @@ export default function Home () {
 
   return (
     <AppContainer>
-      <AppNavbar title="neuland (Robert flavor)" showBack={false}>
+      <AppNavbar title="freiland" showBack={false}>
         <AppNavbar.Button onClick={() => setShowThemeModal(true)}>
           <FontAwesomeIcon title="Personalisieren" icon={faPen} fixedWidth />
         </AppNavbar.Button>
